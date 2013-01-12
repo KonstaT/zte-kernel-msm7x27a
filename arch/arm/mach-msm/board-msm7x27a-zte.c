@@ -42,7 +42,7 @@
 #include <linux/power_supply.h>
 #include <linux/regulator/consumer.h>
 #include <mach/rpc_pmapp.h>
-#include <proc_comm.h>
+#include "proc_comm.h"
 
 #include <mach/msm_battery.h>
 #include <linux/smsc911x.h>
@@ -3093,7 +3093,7 @@ static void set_camera_reset_low(void)
     mdelay(10);
 }
 #if defined (CONFIG_MACH_ATLAS40) || defined (CONFIG_MACH_NICE)
-/*解决掉电不完全的问题*/
+/*\BD\E2\BE\F6\B5\F4\B5绮籠CD\EA全\B5\C4\CE\CA\CC\E2*/
 static void touch_vdd(void)
 {
 	struct vreg *vreg_s3_sp=NULL;
@@ -3191,7 +3191,7 @@ static void __init msm7x2x_init(void)
 	msm7x2x_misc_init();
 	
 #if defined (CONFIG_MACH_ATLAS40) || defined (CONFIG_MACH_NICE)
-	touch_vdd();/*解决掉电不完全的问题*/
+	touch_vdd();/*\BD\E2\BE\F6\B5\F4\B5绮籠CD\EA全\B5\C4\CE\CA\CC\E2*/
 #endif
 #ifdef CONFIG_ZTE_PLATFORM
 		   set_zte_board_id_type();
