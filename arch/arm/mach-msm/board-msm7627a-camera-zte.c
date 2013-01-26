@@ -524,7 +524,7 @@ struct msm_camera_device_platform_data msm_camera_device_data_front = {
 
 #ifdef CONFIG_S5K4E1
 static struct msm_camera_sensor_platform_info s5k4e1_sensor_7627a_info = {
-	.mount_angle = 90
+	.mount_angle = 0
 };
 
 static struct msm_camera_sensor_flash_data flash_s5k4e1 = {
@@ -555,7 +555,7 @@ static struct platform_device msm_camera_sensor_s5k4e1 = {
 
 #ifdef CONFIG_IMX072
 static struct msm_camera_sensor_platform_info imx072_sensor_7627a_info = {
-	.mount_angle = 90
+	.mount_angle = 0
 };
 
 static struct msm_camera_sensor_flash_data flash_imx072 = {
@@ -588,7 +588,7 @@ static struct platform_device msm_camera_sensor_imx072 = {
 static struct msm_camera_sensor_info msm_camera_sensor_ov9726_data;
 
 static struct msm_camera_sensor_platform_info ov9726_sensor_7627a_info = {
-	.mount_angle = 90
+	.mount_angle = 0
 };
 
 static struct msm_camera_sensor_flash_data flash_ov9726 = {
@@ -621,7 +621,7 @@ static inline void msm_camera_vreg_init(void) { }
 
 #ifdef CONFIG_MT9E013
 static struct msm_camera_sensor_platform_info mt9e013_sensor_7627a_info = {
-	.mount_angle = 90
+	.mount_angle = 0
 };
 
 static struct msm_camera_sensor_flash_data flash_mt9e013 = {
@@ -689,7 +689,7 @@ static struct platform_device msm_camera_sensor_ov5640 = {
 
 #ifdef CONFIG_WEBCAM_OV7692_QRD
 static struct msm_camera_sensor_platform_info ov7692_sensor_7627a_info = {
-	.mount_angle = 90
+	.mount_angle = 0
 };
 
 static struct msm_camera_sensor_flash_data flash_ov7692 = {
@@ -719,7 +719,7 @@ static struct platform_device msm_camera_sensor_ov7692 = {
 
 #ifdef CONFIG_OV7692
 static struct msm_camera_sensor_platform_info ov7692_sensor_7627a_info = {
-	.mount_angle = 90
+	.mount_angle = 0
 };
 
 static struct msm_camera_sensor_flash_data flash_ov7692 = {
@@ -751,7 +751,7 @@ static struct platform_device msm_camera_sensor_ov7692 = {
 
 #ifdef CONFIG_OV5640
 static struct msm_camera_sensor_platform_info ov5640_sensor_7627a_info = {
-	.mount_angle = 90
+	.mount_angle = 0
 };
 
 #ifdef CONFIG_MACH_NICE
@@ -789,7 +789,7 @@ static struct platform_device msm_camera_sensor_ov5640 = {
 
 #ifdef CONFIG_S5K5CAGX
 static struct msm_camera_sensor_platform_info s5k5cagx_sensor_7627a_info = {
-	.mount_angle = 90
+	.mount_angle = 0
 };
 
 #ifdef CONFIG_MACH_NICE
@@ -827,7 +827,7 @@ static struct platform_device msm_camera_sensor_s5k5cagx = {
 
 #ifdef CONFIG_MT9D115
 static struct msm_camera_sensor_platform_info mt9d115_sensor_7627a_info = {
-	.mount_angle = 90
+	.mount_angle = 0
 };
 
 static struct msm_camera_sensor_flash_data flash_mt9d115 = {
