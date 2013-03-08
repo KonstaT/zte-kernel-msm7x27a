@@ -57,13 +57,6 @@ config RTC_DEBUG
 	  and individual RTC drivers.
 
 comment "RTC interfaces"
-	  
-config ZTE_FIX_ALARM_SYNC
-	bool "zte code: fix time sync from modem"
-	depends on RTC_CLASS = y
-	default y
-	help
-	  Say yes here to enable this fix in the RTC framework.
 
 config RTC_INTF_SYSFS
 	boolean "/sys/class/rtc/rtcN (sysfs)"

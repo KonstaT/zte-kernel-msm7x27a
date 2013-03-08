@@ -24,7 +24,6 @@
 #include <linux/sysdev.h>
 #include <linux/uaccess.h>
 #include <linux/wakelock.h>
-#include <linux/zte_hibernate.h>
 
 #define ANDROID_ALARM_PRINT_INFO (1U << 0)
 #define ANDROID_ALARM_PRINT_IO (1U << 1)
@@ -57,32 +56,6 @@ static uint32_t alarm_enabled;
 static uint32_t wait_pending;
 
 static struct alarm alarms[ANDROID_ALARM_TYPE_COUNT];
-#ifdef CONFIG_ZTE_FIX_ALARM_SYNC
-#define FROM_ANDROID_APP   0
-#define FROM_MODEM_NETWORK 1    //time sync from network,not start by app
-static int set_rtc_flag=FROM_MODEM_NETWORK; //first let all the time sync can notify alarmmanagerserver in app
-/*this is a fix by zhengchao@20101008
- *this function is called by Hctosys.c when sync time from modem
- */
-void fix_sync_alarm(void)
-{
-	if (set_rtc_flag==FROM_MODEM_NETWORK)
-	{
-		unsigned long flags;
-
-		spin_lock_irqsave(&alarm_slock, flags);
-		alarm_pending |= ANDROID_ALARM_TIME_CHANGE_MASK;
-		wake_up(&alarm_wait_queue);
-		spin_unlock_irqrestore(&alarm_slock, flags);
-		printk("[alarm] time sync from modem,fix_sync_alarm\n");
-	}
-
-	set_rtc_flag=FROM_MODEM_NETWORK;
-
-}
-
-#endif
-
 
 static long alarm_ioctl(struct file *file, unsigned int cmd, unsigned long arg)
 {
@@ -179,12 +152,6 @@ from_old_alarm_set:
 			rv = -EFAULT;
 			goto err1;
 		}
-				#ifdef CONFIG_ZTE_FIX_ALARM_SYNC
-		printk("[alarm] time sync from APP\n");
-
-		//Setting this flag means sync operation comes from APP 
-		set_rtc_flag = FROM_ANDROID_APP;
-	#endif
 		rv = alarm_set_rtc(new_rtc_time);
 		spin_lock_irqsave(&alarm_slock, flags);
 		alarm_pending |= ANDROID_ALARM_TIME_CHANGE_MASK;
@@ -263,8 +230,6 @@ static int alarm_release(struct inode *inode, struct file *file)
 	return 0;
 }
 
-void clear_hb_alarm(void);
-int is_hb_alarm_expire(void);
 static void alarm_triggered(struct alarm *alarm)
 {
 	unsigned long flags;
@@ -277,10 +242,6 @@ static void alarm_triggered(struct alarm *alarm)
 		alarm_enabled &= ~alarm_type_mask;
 		alarm_pending |= alarm_type_mask;
 		wake_up(&alarm_wait_queue);
-		if (is_hb_alarm_expire()) {
-			clear_hb_alarm();
-			alarm_wakeup_hibernate();
-		}
 	}
 	spin_unlock_irqrestore(&alarm_slock, flags);
 }
