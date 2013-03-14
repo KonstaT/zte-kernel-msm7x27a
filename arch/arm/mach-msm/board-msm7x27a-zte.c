@@ -1473,29 +1473,17 @@ static struct msm_i2c_platform_data msm_gsbi1_qup_i2c_pdata = {
 
 #ifdef CONFIG_ARCH_MSM7X27A
 
-#if defined (CONFIG_MACH_ATLAS40)
-#define LCD_XY  (480*800)
-#elif defined (CONFIG_MACH_NICE)
-#define LCD_XY  (320*480)
-#else
-#define LCD_XY  (0)
-#endif
-
-#if (LCD_XY == 480*800)
-//#define MSM_PMEM_MDP_SIZE       (26*1024*1024)
-//#define MSM_PMEM_MDP_SIZE       0x1DD1000
-//35M
-#define MSM_PMEM_MDP_SIZE       0x2300000
-#elif (LCD_XY == 320*480)
-//#define MSM_PMEM_MDP_SIZE       (16*1024*1024)
-#define MSM_PMEM_MDP_SIZE       (20*1024*1024)
+#if defined (CONFIG_MACH_ATLAS40)		// (480*800)
+#define MSM_PMEM_MDP_SIZE       0x1A00000	// 26M
+#elif defined (CONFIG_MACH_NICE)		// (320*480)
+#define MSM_PMEM_MDP_SIZE       0x1400000	// 20M
 #else
 #define MSM_PMEM_MDP_SIZE       0x1DD1000
 #endif
 
 #define MSM7x25A_MSM_PMEM_MDP_SIZE       0x1500000
 
-#define MSM_PMEM_ADSP_SIZE      0x1000000
+#define MSM_PMEM_ADSP_SIZE      0xC00000	// 12M
 #define MSM7x25A_MSM_PMEM_ADSP_SIZE      0xB91000
 
 
