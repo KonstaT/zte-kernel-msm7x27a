@@ -15,3 +15,6 @@ cifs-$(CONFIG_CIFS_UPCALL) += cifs_spnego.o
 cifs-$(CONFIG_CIFS_DFS_UPCALL) += dns_resolve.o cifs_dfs_ref.o
 
 cifs-$(CONFIG_CIFS_FSCACHE) += fscache.o cache.o
+
+# Ignore warnings to prevent build breaks when using gcc 4.6
+CFLAGS_cifssmb.o = -Wno-array-bounds
