@@ -99,7 +99,6 @@ typedef unsigned int boolean;
 #else
 #define MSMFB_DEFAULT_TYPE MDP_RGB_565
 #endif
-
 #endif
 
 #define outp32(addr, val) writel(val, addr)

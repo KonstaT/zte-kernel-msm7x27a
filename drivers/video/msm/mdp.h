@@ -845,9 +845,17 @@ static inline int mdp4_overlay_dsi_state_get(void)
 }
 #endif
 
-void mdp_vid_quant_set(void);
 #ifndef CONFIG_FB_MSM_MDP40
 static inline void mdp_dsi_cmd_overlay_suspend(void)
+{
+	/* empty */
+}
+#endif
+
+#ifdef CONFIG_FB_MSM_DTV
+void mdp_vid_quant_set(void);
+#else
+static inline void mdp_vid_quant_set(void)
 {
 	/* empty */
 }
@@ -857,5 +865,4 @@ static inline int msmfb_overlay_vsync_ctrl(struct fb_info *info,
 	return 0;
 }
 #endif
-
 #endif /* MDP_H */
